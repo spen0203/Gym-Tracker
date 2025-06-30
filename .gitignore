@@ -35,3 +35,6 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Security - API keys and sensitive configuration
+services/constants.ts
