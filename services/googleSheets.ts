@@ -1,9 +1,6 @@
 // Note: You'll need to install axios: npm install axios
 // import axios from 'axios';
-
-const GOOGLE_SHEETS_API_KEY = 'YOUR_API_KEY';
-const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID';
-const SHEET_NAME = 'Sheet1'; // or your sheet name
+import { GOOGLE_SHEETS_CONFIG, APPS_SCRIPT_URL, CSV_URL } from './constants';
 
 export interface WorkoutTemplate {
   name: string;
@@ -16,7 +13,7 @@ export const fetchWorkoutData = async () => {
   try {
     // Uncomment when axios is installed
     // const response = await axios.get(
-    //   `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${GOOGLE_SHEETS_API_KEY}`
+    //   `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEETS_CONFIG.SPREADSHEET_ID}/values/${GOOGLE_SHEETS_CONFIG.SHEET_NAME}?key=${GOOGLE_SHEETS_CONFIG.API_KEY}`
     // );
     
     // For now, return mock data
@@ -63,10 +60,11 @@ export const loadWorkoutTemplates = async (): Promise<WorkoutTemplate[]> => {
 };
 
 // Alternative method using Google Apps Script
-export const fetchDataFromAppsScript = async (scriptUrl: string) => {
+export const fetchDataFromAppsScript = async (scriptUrl?: string) => {
   try {
+    const url = scriptUrl || APPS_SCRIPT_URL;
     // Uncomment when axios is installed
-    // const response = await axios.get(scriptUrl);
+    // const response = await axios.get(url);
     // const data = response.data;
     // return data;
     
@@ -79,10 +77,11 @@ export const fetchDataFromAppsScript = async (scriptUrl: string) => {
 };
 
 // CSV method (if you export Google Sheets as CSV)
-export const fetchCSVData = async (csvUrl: string) => {
+export const fetchCSVData = async (csvUrl?: string) => {
   try {
+    const url = csvUrl || CSV_URL;
     // Uncomment when axios is installed
-    // const response = await axios.get(csvUrl);
+    // const response = await axios.get(url);
     // const csvData = response.data;
     
     // // Simple CSV parsing (you might want to use papaparse for more complex CSV)
